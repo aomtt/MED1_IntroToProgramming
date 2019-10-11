@@ -2,11 +2,12 @@ class Flower {
   
  // Variables
  
- float r;       // radius of the flower petal
- int n_petals;  // number of petals 
- float x;       // x-position of the center of the flower
- float y;       // y-position of the center of the flower
- int petalColor;//hexadecimal number for the color of petals
+ float r;               // radius of the flower petal
+ int n_petals;          // number of petals 
+ float x;               // x-position of the center of the flower
+ float y;               // y-position of the center of the flower
+ int petalColor;        //hexadecimal number for the color of petals
+ float xDistance,yDistance;
  
 Flower(float temp_r, int temp_n_petals, float temp_x, float temp_y, int temp_petalColor) {
   r=temp_r;
@@ -14,6 +15,8 @@ Flower(float temp_r, int temp_n_petals, float temp_x, float temp_y, int temp_pet
   x=temp_x;
   y=temp_y;
   petalColor=temp_petalColor;
+  xDistance=3;
+  yDistance=2;
 }
 
 void display () {
@@ -31,6 +34,22 @@ void display () {
   }
   fill(200,0,0);
   ellipse(x,y,r*1.2,r*1.2);
+  this.movement();
+}
+void movement()
+{
+  x += xDistance;
+  y += yDistance;
+  this.bounce();
+}
+void bounce()
+{
+  if (x<0||x>width){
+  xDistance /= (-1);
+  }
+  if (y<0||y>height){
+  yDistance /= (-1);
+  }
 }
 
 }
